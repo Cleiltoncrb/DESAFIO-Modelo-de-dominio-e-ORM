@@ -1,8 +1,7 @@
 package com.DESAFIO_Modelo_de_dominio_e_ORM.entities;
 
 import jakarta.persistence.*;
-
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_categoria")
@@ -15,7 +14,10 @@ public class Categoria {
     @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    public Categoria(){}
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Atividade> atividades = new ArrayList<>();
+
+    public Categoria() {}
 
     public Categoria(Long id, String descricao) {
         this.id = id;
@@ -40,14 +42,14 @@ public class Categoria {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Categoria categoria = (Categoria) o;
         return Objects.equals(id, categoria.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id);
     }
 }

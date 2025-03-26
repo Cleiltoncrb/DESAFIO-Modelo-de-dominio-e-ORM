@@ -3,6 +3,7 @@ package com.DESAFIO_Modelo_de_dominio_e_ORM.entities;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -16,6 +17,9 @@ public class Participante {
 
     @Column(unique = true)
     private String email;
+
+    @ManyToMany(mappedBy = "participantes")
+    private Set<Atividade> atividades ;
 
     public Participante(){}
 
@@ -51,6 +55,7 @@ public class Participante {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Participante that = (Participante) o;

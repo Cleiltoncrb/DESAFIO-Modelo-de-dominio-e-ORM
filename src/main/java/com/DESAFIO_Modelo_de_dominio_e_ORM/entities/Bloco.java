@@ -18,7 +18,9 @@ public class Bloco {
     private Instant inicio;
     private Instant fim;
 
-
+    @ManyToOne
+    @JoinColumn(name = "atividade_id")
+    private Atividade atividade;
 
     public Bloco(){    }
 
@@ -54,6 +56,7 @@ public class Bloco {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Bloco bloco = (Bloco) o;
