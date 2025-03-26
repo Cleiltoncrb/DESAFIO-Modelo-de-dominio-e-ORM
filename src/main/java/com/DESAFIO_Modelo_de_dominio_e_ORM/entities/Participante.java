@@ -2,6 +2,7 @@ package com.DESAFIO_Modelo_de_dominio_e_ORM.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class Participante {
     private String email;
 
     @ManyToMany(mappedBy = "participantes")
-    private Set<Atividade> atividades ;
+    private Set<Atividade> atividades = new HashSet<>() ;
 
     public Participante(){}
 
@@ -51,6 +52,10 @@ public class Participante {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Atividade> getAtividades() {
+        return atividades;
     }
 
     @Override

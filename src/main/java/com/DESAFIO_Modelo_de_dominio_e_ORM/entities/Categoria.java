@@ -1,6 +1,7 @@
 package com.DESAFIO_Modelo_de_dominio_e_ORM.entities;
 
 import jakarta.persistence.*;
+
 import java.util.*;
 
 @Entity
@@ -17,7 +18,8 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Atividade> atividades = new ArrayList<>();
 
-    public Categoria() {}
+    public Categoria() {
+    }
 
     public Categoria(Long id, String descricao) {
         this.id = id;

@@ -2,8 +2,7 @@ package com.DESAFIO_Modelo_de_dominio_e_ORM.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -28,10 +27,11 @@ public class Atividade {
             joinColumns = @JoinColumn(name = "atividade_id"),
             inverseJoinColumns = @JoinColumn(name = "participante_id")
     )
-    private Set<Participante> participantes;
+    private Set<Participante> participantes = new HashSet<>();
+
 
     @OneToMany(mappedBy = "atividade")
-    private Set<Bloco> blocos;
+    private List<Bloco> blocos;
 
     public Atividade(){}
 
@@ -72,6 +72,10 @@ public class Atividade {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
     }
 
     @Override

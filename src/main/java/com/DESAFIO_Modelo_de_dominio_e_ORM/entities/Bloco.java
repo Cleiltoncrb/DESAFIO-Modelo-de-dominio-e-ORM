@@ -14,15 +14,15 @@ public class Bloco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant inicio;
     private Instant fim;
 
     @ManyToOne
-    @JoinColumn(name = "atividade_id")
+    @JoinColumn(name = "atividade_id", nullable = false)
     private Atividade atividade;
 
-    public Bloco(){    }
+    public Bloco() {
+    }
 
     public Bloco(Long id, Instant inicio, Instant fim) {
         this.id = id;
@@ -52,6 +52,14 @@ public class Bloco {
 
     public void setFim(Instant fim) {
         this.fim = fim;
+    }
+
+    public Atividade getAtividade() {
+        return atividade;
+    }
+
+    public void setAtividade(Atividade atividade) {
+        this.atividade = atividade;
     }
 
     @Override
